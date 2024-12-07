@@ -27,13 +27,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
+        <div className="hidden md:block text-sm font-bold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer text-[#585858]">Share Item</div>
         <Modal>
           <Modal.Trigger name={user ? "share" : "Login"}>
             <button
               type="button"
               className="hidden md:block text-sm font-bold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer text-[#585858]"
             >
-              Share your home
+              Share Home
             </button>
           </Modal.Trigger>
           <Menu>
@@ -60,7 +61,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                   ))}
 
                   <Modal.Trigger name="share">
-                    <MenuItem label="Share your home" />
+                    <MenuItem label="Share Home" />
                   </Modal.Trigger>
                   <hr />
                   <MenuItem label="Log out" onClick={signOut} />
