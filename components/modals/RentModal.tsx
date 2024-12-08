@@ -53,7 +53,7 @@ const RentModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
     getValues,
   } = useForm<FieldValues>({
     defaultValues: {
-      category: "Beach",
+      category: "Homes",
       location: null,
       guestCount: 1,
       bathroomCount: 1,
@@ -238,7 +238,10 @@ const RentModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
               title="Which of these best describes your place?"
               subtitle="Pick a category"
             />
-            <div className="flex-1 grid grid-cols-2  gap-3 max-h-[60vh] lg:max-h-[260px] overflow-y-scroll scroll-smooth">
+            <div className="flex-1 grid grid-cols-2  gap-3 max-h-[60vh] lg:max-h-[260px] overflow-y-scroll scroll-smooth" style={{
+    scrollbarColor: "#5ba1b0 #f1f1f1",  // Thumb color and track color
+    scrollbarWidth: "thin",  // Thin scrollbar
+  }}>
               {categories.map((item) => (
                   <CategoryButton
                     onClick={setCustomValue}
