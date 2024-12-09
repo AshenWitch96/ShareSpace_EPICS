@@ -100,7 +100,7 @@ export const LISTINGS_BATCH = 16;
 
 export const menuItems = [
   {
-    label: "My trips",
+    label: "My rents",
     path: "/trips",
   },
   {

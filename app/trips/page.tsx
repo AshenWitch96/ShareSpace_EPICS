@@ -22,8 +22,8 @@ const TripsPage = async () => {
   if (listings.length === 0) {
     return (
       <EmptyState
-        title="No trips found"
-        subtitle="Looks like you haven't reserved any trips."
+        title="No rents found"
+        subtitle="Looks like you haven't reserved any rents."
       />
     );
   }
@@ -31,8 +31,8 @@ const TripsPage = async () => {
   return (
     <section className="main-container">
       <Heading
-        title="Trips"
-        subtitle="Where you've been and where you're going."
+        title="Rents"
+        subtitle="Keep track of what you've rented and what's next."
         backBtn
       />
       <div className=" mt-8 md:mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
