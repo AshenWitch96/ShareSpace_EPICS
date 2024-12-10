@@ -10,7 +10,7 @@ const nunito = Nunito({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ShareSpace",
   description:
-    "Your Ultimate Destination Connection. Discover a world of endless possibilities and seamless vacation planning at VacationHub.",
+    "Your Ultimate Communtiy Connection.",
 };
 
 export default function RootLayout({
