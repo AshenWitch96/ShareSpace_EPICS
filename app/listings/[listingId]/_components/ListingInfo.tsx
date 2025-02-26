@@ -15,7 +15,7 @@ interface ListingInfoProps {
   roomCount: number;
   bathroomCount: number;
   category: Category | undefined;
-  latlng: number[];
+  latlng?: number[]; // Allow optional array
 }
 
 const Map = dynamic(() => import("@/components/Map"), {
@@ -31,17 +31,19 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   category,
   latlng,
 }) => {
+  // ✅ Ensure latlng is always a valid [number, number] tuple
+  const mapCenter: [number, number] = latlng && latlng.length === 2 
+    ? [latlng[0] ?? 0, latlng[1] ?? 0] 
+    : [20, 77]; // Default to India's center if undefined
+
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
         <div className="text-[16px] font-semibold flex flex-row items-center gap-2">
           <span className="mr-1">Hosted by</span> <Avatar src={user?.image} />
-          <span> {user?.name}</span>
+          <span>{user?.name}</span>
         </div>
-        <div
-          className="flex flex-row items-center gap-4 font-light text-neutral-700
-          "
-        >
+        <div className="flex flex-row items-center gap-4 font-light text-neutral-700">
           <span>{guestCount} guests</span>
           <span>{roomCount} rooms</span>
           <span>{bathroomCount} bathrooms</span>
@@ -56,10 +58,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         />
       )}
       <hr />
-      <p className=" font-light text-neutral-500 text-[16px] ">{description}</p>
+      <p className="font-light text-neutral-500 text-[16px]">{description}</p>
       <hr />
       <div className="h-[210px]">
-        <Map center={latlng} />
+        <Map center={mapCenter} />
       </div>
     </div>
   );

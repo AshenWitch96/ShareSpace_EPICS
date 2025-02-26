@@ -50,7 +50,7 @@ const SearchControl: React.FC<{ setCenter: (coords: LatLngTuple) => void; setZoo
     setSuggestions([]);
     const newCenter: LatLngTuple = [lat, lon];
     setCenter(newCenter);
-    setZoom(15); // Zoom in when a location is selected
+    setZoom(15);
     map.setView(newCenter, 15);
   };
 
@@ -100,7 +100,8 @@ const SearchControl: React.FC<{ setCenter: (coords: LatLngTuple) => void; setZoo
 };
 
 const Map: React.FC<MapProps> = ({ center }) => {
-  const [mapCenter, setMapCenter] = useState<LatLngTuple>(center || [20, 77]); // India Center
+  // ✅ Ensure center is always a valid LatLngTuple
+  const [mapCenter, setMapCenter] = useState<LatLngTuple>(center ?? [20, 77]); 
   const [zoomLevel, setZoomLevel] = useState(7);
 
   return (
