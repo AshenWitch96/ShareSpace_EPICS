@@ -17,6 +17,8 @@ export const getListings = async (query?: {
       endDate,
       category,
       cursor,
+      minPrice,
+      maxPrice,
     } = query || {};
 
     let where: any = {};
@@ -30,25 +32,27 @@ export const getListings = async (query?: {
     }
 
     if (roomCount) {
-      where.roomCount = {
-        gte: +roomCount,
-      };
+      where.roomCount = { gte: +roomCount };
     }
 
     if (guestCount) {
-      where.guestCount = {
-        gte: +guestCount,
-      };
+      where.guestCount = { gte: +guestCount };
     }
 
     if (bathroomCount) {
-      where.bathroomCount = {
-        gte: +bathroomCount,
-      };
+      where.bathroomCount = { gte: +bathroomCount };
     }
 
     if (country) {
       where.country = country;
+    }
+
+    if (minPrice) {
+      where.price = { gte: +minPrice };
+    }
+
+    if (maxPrice) {
+      where.price = { ...where.price, lte: +maxPrice };
     }
 
     if (startDate && endDate) {
@@ -56,14 +60,8 @@ export const getListings = async (query?: {
         reservations: {
           some: {
             OR: [
-              {
-                endDate: { gte: startDate },
-                startDate: { lte: startDate },
-              },
-              {
-                startDate: { lte: endDate },
-                endDate: { gte: endDate },
-              },
+              { endDate: { gte: startDate }, startDate: { lte: startDate } },
+              { startDate: { lte: endDate }, endDate: { gte: endDate } },
             ],
           },
         },
@@ -88,17 +86,12 @@ export const getListings = async (query?: {
         ? listings[LISTINGS_BATCH - 1].id
         : null;
 
-    return {
-      listings,
-      nextCursor,
-    };
+    return { listings, nextCursor };
   } catch (error) {
-    return {
-      listings: [],
-      nextCursor: null,
-    };
+    return { listings: [], nextCursor: null };
   }
 };
+
 
 export const getListingById = async (id: string) => {
   const listing = await db.listing.findUnique({

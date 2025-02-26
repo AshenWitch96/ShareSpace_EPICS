@@ -8,6 +8,8 @@ import {
   GiForestCamp,
   GiIsland,
   GiWindmill,
+  GiElectricalSocket,
+  GiFemale,
 } from "react-icons/gi";
 import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
@@ -25,9 +27,9 @@ export const categories = [
     description: "Rent homes and apartments!",
   },
   {
-    label: "Windmills",
-    icon: GiWindmill,
-    description: "Properties with windmills!",
+    label: "Electrician",
+    icon: GiElectricalSocket,
+    description: "Get electrical services",
   },
   {
     label: "Modern",
@@ -44,23 +46,23 @@ export const categories = [
     icon: FaTshirt,
     description: "Rent items like electronics, clothes, and more!",
   },
-  {
-    label: "Islands",
+/*  {
+    label: "Plumber",
     icon: GiIsland,
-    description: "Rent properties on islands!",
-  },
+    description: "Get plumbing services",
+  },*/
   {
     label: "Lakeside",
     icon: GiBoatFishing,
     description: "Properties near lakes!",
   },
-  {
+/*  {
     label: "Skiing",
     icon: FaSkiing,
     description: "Properties with skiing nearby!",
   },
   {
-    label: "Castles",
+/*    label: "Castles",
     icon: GiCastle,
     description: "Stay in ancient castles!",
   },
@@ -73,22 +75,22 @@ export const categories = [
     label: "Camping",
     icon: GiForestCamp,
     description: "Camping and outdoor activities!",
-  },
+  },*/
   {
     label: "Food Aid",
     icon: MdFastfood,
-    description: "Donate for free food!",
+    description: "Very Cheap food provided by NGOs!",
   },
   {
-    label: "Desert",
-    icon: GiCactus,
-    description: "Stay in desert properties!",
+    label: "Escort",
+    icon: GiFemale,
+    description: "Accompany and ensure safe passage in secluded areas.",
   },
-  {
+/*  {
     label: "Barns",
     icon: GiBarn,
     description: "Rent a rustic barn!",
-  },
+  },*/
   {
     label: "Services",
     icon: RiServiceLine,

@@ -11,19 +11,22 @@ import Button from "../Button";
 import Heading from "../Heading";
 import Counter from "../inputs/Counter";
 import CountrySelect from "../inputs/CountrySelect";
+import PriceRange from "../inputs/PriceRange"; // New component for price range selection
 
 const Calendar = dynamic(() => import("@/components/Calender"), { ssr: false });
 
 const steps = {
   "0": "location",
   "1": "dateRange",
-  "2": "guestCount",
+  "2": "priceRange", // New step for price range
+  "3": "guestCount",
 };
 
 enum STEPS {
   LOCATION = 0,
   DATE = 1,
-  INFO = 2,
+  PRICE = 2, // New step for price range
+  INFO = 3,
 }
 
 const SearchModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
@@ -42,11 +45,13 @@ const SearchModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
         endDate: new Date(),
         key: "selection",
       },
+      priceRange: { min: 0, max: 1000 }, // Default price range
     },
   });
 
   const location = watch("location");
   const dateRange = watch("dateRange");
+  const priceRange = watch("priceRange");
   const country = location?.label;
 
   const Map = useMemo(
@@ -76,7 +81,7 @@ const SearchModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.INFO) return onNext();
-    const { guestCount, roomCount, bathroomCount, dateRange } = data;
+    const { guestCount, roomCount, bathroomCount, dateRange, priceRange } = data;
 
     let currentQuery = {};
 
@@ -90,6 +95,8 @@ const SearchModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
       guestCount,
       roomCount,
       bathroomCount,
+      minPrice: priceRange.min,
+      maxPrice: priceRange.max,
     };
 
     if (dateRange.startDate) {
@@ -123,6 +130,20 @@ const SearchModal = ({ onCloseModal }: { onCloseModal?: () => void }) => {
             <div className="h-[348px] w-full">
               <Calendar onChange={setCustomValue} value={dateRange} />
             </div>
+          </div>
+        );
+
+      case STEPS.PRICE:
+        return (
+          <div className="flex flex-col gap-6">
+            <Heading
+              title="Price Range"
+              subtitle="Set your budget for the trip!"
+            />
+            <PriceRange
+              value={priceRange}
+              onChange={(value) => setCustomValue("priceRange", value)}
+            />
           </div>
         );
 
