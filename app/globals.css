@@ -57,15 +57,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-rose-400 transition-all duration-300 rounded-[25px];
+  @apply bg-[#5f9ea0] transition-all duration-300 rounded-[25px];
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-rose-500;
+  @apply bg-[#538b8d];
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-rose-100 rounded-[25px];
+  @apply bg-[#48797b] rounded-[25px];
 }
 
 ::-webkit-scrollbar-corner {
