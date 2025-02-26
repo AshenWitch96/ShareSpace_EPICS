@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import EmptyState from "@/components/EmptyState";
 import ListingHead from "./_components/ListingHead";
 import ListingInfo from "./_components/ListingInfo";
 import ListingClient from "./_components/ListingClient";
+import ListingReview from "./_components/ListingReview";
 
 import { getCurrentUser } from "@/services/user";
 import { getListingById } from "@/services/listing";
@@ -48,7 +49,7 @@ const ListingPage = async ({ params: { listingId } }: { params: IParams }) => {
           id={id}
         />
       </div>
-
+  
       <ListingClient
         id={id}
         price={price}
@@ -66,6 +67,13 @@ const ListingPage = async ({ params: { listingId } }: { params: IParams }) => {
           latlng={latlng}
         />
       </ListingClient>
+  
+      {/* Reviews Section */}
+      <section id="reviews" className="bg-white py-10 mt-10 border-t">
+        <div className="max-w-4xl mx-auto px-4">
+          <ListingReview listingId={id} currentUser={currentUser} />
+        </div>
+      </section>
     </section>
   );
 };
