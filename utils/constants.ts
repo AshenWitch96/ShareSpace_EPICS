@@ -1,4 +1,6 @@
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
+import { FaCar } from "react-icons/fa";
+
 import {
   GiBarn,
   GiBoatFishing,
@@ -82,9 +84,9 @@ export const categories = [
     description: "Very Cheap food provided by NGOs!",
   },
   {
-    label: "Escort",
-    icon: GiFemale,
-    description: "Accompany and ensure safe passage in secluded areas.",
+    label: "Vehicle Rentals",
+    icon: FaCar,
+    description: "Rent cars, bikes, and other vehicles for travel!",
   },
 /*  {
     label: "Barns",
